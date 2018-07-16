@@ -1,8 +1,15 @@
+const bcrypt = require('bcryptjs');
+
 const { User } = require('../../../models');
 
 async function createUser(req, res, next) {
   try {
-    const userCreated = await User.create(req.body);
+    const { email, password } = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
+    const userCreated = await User.create({ email, password: hash });
+
     return res.status(201).json(userCreated);
   } catch (err) {
     return next(err);
