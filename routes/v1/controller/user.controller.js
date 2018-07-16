@@ -26,7 +26,7 @@ async function getUser(req, res, next) {
     if (!fetchUser) {
       return res.status(404).send({ error: 'No user found' });
     }
-    return res.status(200).json(fetchUser);
+    return res.status(200).json({ email: fetchUser.email });
   } catch (err) {
     return next(err);
   }
@@ -51,7 +51,9 @@ function updateUser(req, res, next) {
             id: parseInt(req.params.id, 10),
           },
         });
-      }).then(user => res.status(200).json(user));
+      }).then((user) => {
+        res.status(200).json({ email: user.email });
+      });
   } catch (err) {
     return next(err);
   }
