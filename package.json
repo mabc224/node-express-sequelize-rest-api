@@ -4,7 +4,8 @@
   "description": "Rest api built with node.js using sequelize",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "NODE_ENV=test mocha --timeout 25000 ./test/**.test.js"
   },
   "author": "Arsalan Bilal <mabc224@gmail.com>",
   "license": "MIT",
@@ -28,8 +29,11 @@
     "sequelize": "^4.38.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0"
+    "eslint-plugin-import": "^2.13.0",
+    "mocha": "^5.2.0"
   }
 }

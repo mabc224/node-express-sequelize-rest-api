@@ -40,8 +40,9 @@ app.use((err, req, res, next) => {
   });
 
 
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test') {
     console.log(err);
+    console.log((err && err.errors) ? err.errors : '');
   }
 });
 
