@@ -7,13 +7,8 @@
 const debug = require('debug')('test-task-rest-api:server');
 const http = require('http');
 const app = require('../app');
-
-/**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const appConfig = require('./../config/');
+const { sequelize } = require('./../models');
 
 /**
  * Create HTTP server.
@@ -22,21 +17,13 @@ app.set('port', port);
 const server = http.createServer(app);
 
 /**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
  * Normalize a port into a number, string, or false.
  */
 
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
     return val;
   }
@@ -48,6 +35,13 @@ function normalizePort(val) {
 
   return false;
 }
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+const port = normalizePort(appConfig.appPort);
+app.set('port', port);
 
 /**
  * Event listener for HTTP server "error" event.
@@ -88,3 +82,13 @@ function onListening() {
     : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
 }
+
+/**
+ * Connect with database then Listen on provided port, on all network interfaces.
+ */
+
+sequelize.sync({ force: true }).then(() => {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
