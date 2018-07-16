@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const router = express.Router();
+const userRoutes = require('./v1/users');
+
+
+router.get('/', (req, res) => res.status(200).send({
+  error: false,
+  message: 'Welcome to the beginning of user api.',
+}));
+
+router.use('/users', userRoutes);
 
 module.exports = router;
