@@ -19,8 +19,7 @@ const production = {
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
     dialect: process.env.MYSQL_DIALECT,
-    logging: process.env.MYSQL_LOGGING || false,
-    DATABASE_URL: process.env.DATABASE_URL,
+    logging: process.env.MYSQL_LOGGING || false
   },
   appPort: process.env.PORT,
 };
