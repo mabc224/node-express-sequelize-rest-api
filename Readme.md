@@ -70,23 +70,26 @@ Routing has functionality for changing route quickly with with quick option to c
     ├── bin
     |  └── www
     ├── config
+    |  ├── appConfig.js
     |  └── index.js
     ├── models
     |  ├── index.js
     |  └── user.js
-    ├── out.txt
     ├── package-lock.json
     ├── package.json
     ├── pm2-dev.json
     ├── pm2-prod.json
-    └── routes
-       ├── index.js
-       └── v1
-          ├── controller
-          |  └── user.controller.js
-          ├── users.routes.js
-          └── validator
-             └── user.validator.js
+    ├── routes
+    |  ├── index.js
+    |  └── v1
+    |     ├── controller
+    |     |  └── user.controller.js
+    |     ├── users.routes.js
+    |     └── validator
+    |        └── user.validator.js
+    ├── test
+    |  └── user.test.js
+    └── test-task-rest-API.postman_collection
 
 
 ### Async/Await
