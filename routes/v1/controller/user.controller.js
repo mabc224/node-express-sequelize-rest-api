@@ -11,7 +11,11 @@ async function createUser(req, res, next) {
 
 async function getUser(req, res, next) {
   try {
-    const fetchUser = await User.findById(req.params.id);
+    const fetchUser = await User.find({
+      where: {
+        id: parseInt(req.params.id, 10),
+      },
+    });
     if (!fetchUser) {
       return res.status(404).send({ error: 'No user found' });
     }
@@ -23,41 +27,45 @@ async function getUser(req, res, next) {
 
 function updateUser(req, res, next) {
   try {
-    User.update(
+    return User.update(
       { email: req.body.email },
-      { returning: true, where: { id: req.params.id } },
+      {
+        where: { id: parseInt(req.params.id, 10) },
+      },
     )
-      .then(([rowsUpdate, [updatedUser]]) => {
-        if (!rowsUpdate) {
+      .then((updatedUser) => {
+        if (!updatedUser) {
           return res.status(404).send({
             message: 'User not found to update',
           });
         }
-        return res.status(200).json(updatedUser);
-      });
+        return User.find({
+          where: {
+            id: parseInt(req.params.id, 10),
+          },
+        });
+      }).then(user => res.status(200).json(user));
   } catch (err) {
     return next(err);
   }
 }
 
-function deleteUser(req, res, next) {
+async function deleteUser(req, res, next) {
   try {
-    User.find({
+    const fetchUser = await User.find({
       where: {
-        id: req.params.id,
+        id: parseInt(req.params.id, 10),
       },
-    })
-      .then((user) => {
-        if (!user) {
-          return res.status(404).send({
-            message: 'User Not Found',
-          });
-        }
-
-        return user
-          .destroy()
-          .then(() => res.status(204));
-      });
+    });
+    if (!fetchUser) {
+      return res.status(404).send({ error: 'No user found' });
+    }
+    await User.destroy({
+      where: {
+        id: parseInt(req.params.id, 10),
+      },
+    });
+    return res.status(204).json({});
   } catch (err) {
     return next(err);
   }

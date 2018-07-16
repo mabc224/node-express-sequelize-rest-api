@@ -7,11 +7,10 @@ const config = require('./../config');
 
 const db = {};
 
-let sequelize;
-if (config.database.DATABASE_URL) {
-  sequelize = new Sequelize(config.database.DATABASE_URL);
-} else {
-  sequelize = new Sequelize(config.database.dbname, config.database.username, config.database.password, {
+const sequelize = new Sequelize(
+  config.database.dbname,
+  config.database.username,
+  config.database.password, {
     host: config.database.host,
     dialect: config.database.dialect,
     operatorsAliases: false,
@@ -23,7 +22,7 @@ if (config.database.DATABASE_URL) {
     },
     logging: config.database.logging,
     define: {
-      // underscored: true,
+    // underscored: true,
       timestamps: true,
       createdAt: 'created_at',
       updatedAt: 'updated_at',
@@ -32,8 +31,8 @@ if (config.database.DATABASE_URL) {
       paranoid: false,
       freezeTableName: true,
     },
-  });
-}
+  },
+);
 
 fs
   .readdirSync(__dirname)
