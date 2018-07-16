@@ -6,7 +6,7 @@ const development = {
     host: process.env.MYSQL_HOST || 'localhost',
     port: process.env.MYSQL_PORT || 3306,
     dialect: process.env.MYSQL_DIALECT || 'mysql',
-    logging: process.env.MYSQL_LOGGING || true,
+    logging: process.env.MYSQL_LOGGING || console.log,
   },
   appPort: process.env.PORT || 3000,
 };
@@ -19,6 +19,7 @@ const production = {
     host: process.env.MYSQL_HOST,
     port: process.env.MYSQL_PORT,
     dialect: process.env.MYSQL_DIALECT,
+    logging: process.env.MYSQL_LOGGING || false,
     DATABASE_URL: process.env.DATABASE_URL,
   },
   appPort: process.env.PORT,
