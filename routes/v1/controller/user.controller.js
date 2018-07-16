@@ -10,7 +10,7 @@ async function createUser(req, res, next) {
 
     const userCreated = await User.create({ email, password: hash });
 
-    return res.status(201).json(userCreated);
+    return res.status(201).json({ id: userCreated.id, email: userCreated.email });
   } catch (err) {
     return next(err);
   }
