@@ -92,6 +92,9 @@ Routing has functionality for changing route quickly with with quick option to c
 ### Async/Await
  This application uses Async/Await. In order to use it as intended, you need at least Node v7.6.
 
+### Testing
+
+Postman collection is added for testing in local system
 
  ### External References and Resources 
 

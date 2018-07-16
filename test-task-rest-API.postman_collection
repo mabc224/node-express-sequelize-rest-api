@@ -1,0 +1,93 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Test-Task-rest-API",
+		"_postman_id": "8106a3e8-458e-5b64-643e-91e2d02eab08",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3000/api/v1/users",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"email\": \"mabc224@gmail.com\", \"password\": \"12345678\"\r\n}"
+				},
+				"description": "Post - Create User"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users/{{id}}",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/{{id}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get - Fetch User by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users/{{id}}",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/{{id}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"mabc225@gmail.com\" }"
+				},
+				"description": "PUT - Update User by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1/users/{{id}}",
+			"request": {
+				"url": "http://localhost:3000/api/v1/users/{{id}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "DEL - Delete User by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3000/api/v1",
+			"request": {
+				"url": "http://localhost:3000/api/v1",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get - Index Route"
+			},
+			"response": []
+		}
+	]
+}
